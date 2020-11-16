@@ -1,7 +1,5 @@
 # Blockchain for a cryptocurrency from scratch using Python.
 
-#### Creds to Udemy course: Python, JS & React | Build a Blockchain & Cryptocurrency
-
 ---
 
 ## **Set up a venv:**
@@ -24,4 +22,12 @@ echo $VIRTUAL_ENV
 **Install all packages**
 ```bash
 pip3 install -r requirements.txt
+```
+
+**Run the tests**
+
+Make sure to activate the virtual environment.
+
+````bash
+python3 -m pytest backend/tests
 ```
