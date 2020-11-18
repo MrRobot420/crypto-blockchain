@@ -28,6 +28,6 @@ pip3 install -r requirements.txt
 
 Make sure to activate the virtual environment.
 
-````bash
+```bash
 python3 -m pytest backend/tests
 ```
