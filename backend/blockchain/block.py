@@ -83,6 +83,14 @@ class Block:
 
         return 1
 
+    
+    def to_json(self):
+        """
+        Serialize the block into a dictionary of its attributes.
+        """
+        return self.__dict__
+
+
     @staticmethod
     def is_valid_block(last_block, block):
         """
