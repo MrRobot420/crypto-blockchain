@@ -28,12 +28,12 @@ class Block:
     def __repr__(self):
         return (
             'Block('
-            f'Block - timestamp: {self.timestamp}, '
-            f'Block - last_hash: {self.last_hash}, '
-            f'Block - hash: {self.hash}, '
-            f'Block - data: {self.data}, '
-            f'Block - difficulty: {self.difficulty}, '
-            f'Block - nonce: {self.nonce}'
+            f'timestamp: {self.timestamp}, '
+            f'last_hash: {self.last_hash}, '
+            f'hash: {self.hash}, '
+            f'data: {self.data}, '
+            f'difficulty: {self.difficulty}, '
+            f'nonce: {self.nonce}'
         )
 
     
