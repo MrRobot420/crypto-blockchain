@@ -1,3 +1,5 @@
+import os
+import random
 from backend import blockchain
 from flask import Flask, jsonify
 
@@ -26,4 +28,11 @@ def route_blockchain_mine():
 
     return jsonify(blockchain.chain[-1].to_json())
 
-app.run()
+
+PORT = 5000
+
+if os.environ.get('PEER') == 'True':
+    PORT = random.randint(5001, 6000)
+    print(f'...running on port {PORT}')
+
+app.run(port=PORT)
