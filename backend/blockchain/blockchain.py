@@ -60,7 +60,7 @@ class Blockchain:
         Validate the incoming chain.
         Enforce the following rules of the blockchain:
             - the chain must start with the genesis block
-            - blocks must be formatted orrectly
+            - blocks must be formatted correctly
         """
         if chain[0] != Block.genesis():
             raise Exception('The genesis block must be valid')
