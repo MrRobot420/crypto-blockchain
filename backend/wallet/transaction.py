@@ -66,6 +66,7 @@ class Transaction:
 
         self.input = self.create_input(sender_wallet, self.output)
 
+
     def to_json(self):
         """
         Serialize the transaction.
