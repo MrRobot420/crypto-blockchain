@@ -23,6 +23,7 @@ function App() {
     <div className="App">
      <input value={userQuery} onChange={updateUserQuery} onKeyPress={handleKeyPress}/>
      <button onClick={searchQuery}>Search</button>
+      <p>{userQuery}</p>
      <hr/>
      <Joke/>
     </div>
