@@ -5,7 +5,7 @@ function App() {
   const [walletInfo, setWalletInfo] = useState({})
 
   useEffect(() => {
-    fetch('https://localhost:5000/wallet/info')
+    fetch('http://localhost:5000/wallet/info')
       .then(res => res.json())
       .then(json => setWalletInfo(json))
   }, [])
