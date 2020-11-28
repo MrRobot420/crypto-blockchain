@@ -13,11 +13,12 @@ from backend.wallet.transaction_pool import TransactionPool
 from backend.pubsub import PubSub
 
 app = Flask(__name__)
-CORS(app, resources={ r'/*': { 'origins': 'http://localhost:3000' } })
+CORS(app, resources={r'/*': {'origins': 'http://localhost:3000'}})
 blockchain = Blockchain()
 wallet = Wallet(blockchain)
 transaction_pool = TransactionPool()
 pubsub = PubSub(blockchain, transaction_pool)
+
 
 @app.route('/')
 def route_default():
@@ -27,6 +28,19 @@ def route_default():
 @app.route('/blockchain')
 def route_blockchain():
     return jsonify(blockchain.to_json())
+
+
+@app.route('/blockchain/range')
+def route_blockchain_range():
+    # * http://localhost:5000/blockchain/range?start=2&end=5
+    start = int(request.args.get('start'))
+    end = int(request.args.get('end'))
+    return jsonify(blockchain.to_json()[::-1][start:end])
+
+
+@app.route('/blockchain/length')
+def route_blockchain_length():
+    return jsonify(len(blockchain.to_json()))
 
 
 @app.route('/blockchain/mine')
@@ -45,7 +59,7 @@ def route_blockchain_mine():
 def rote_wallet_transact():
     transaction_data = request.get_json()
     transaction = transaction_pool.existing_transaction(wallet.address)
-    
+
     if transaction:
         transaction.update(
             wallet,
@@ -66,7 +80,7 @@ def rote_wallet_transact():
 
 @app.route('/wallet/info')
 def route_wallet_info():
-    return jsonify({ 'address': wallet.address, 'balance': wallet.balance})
+    return jsonify({'address': wallet.address, 'balance': wallet.balance})
 
 
 ROOT_PORT = 5000
@@ -88,8 +102,10 @@ if os.environ.get('PEER') == 'True':
 if os.environ.get('SEED_DATA') == 'True':
     for i in range(10):
         blockchain.add_block([
-            Transaction(Wallet(), Wallet().address, random.randint(2, 50)).to_json(),
-            Transaction(Wallet(), Wallet().address, random.randint(2, 50)).to_json()
+            Transaction(Wallet(), Wallet().address,
+                        random.randint(2, 50)).to_json(),
+            Transaction(Wallet(), Wallet().address,
+                        random.randint(2, 50)).to_json()
         ])
 
 app.run(port=PORT)
