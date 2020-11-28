@@ -5,29 +5,29 @@ import { API_BASE_URL } from '../config'
 import Blockchain from './Blockchain'
 
 function App() {
-  const [walletInfo, setWalletInfo] = useState({})
+    const [walletInfo, setWalletInfo] = useState({})
 
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/wallet/info`)
-      .then(res => res.json())
-      .then(json => setWalletInfo(json))
-  }, [])
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/wallet/info`)
+            .then((res) => res.json())
+            .then((json) => setWalletInfo(json))
+    }, [])
 
-  const { address, balance } = walletInfo
+    const { address, balance } = walletInfo
 
-  return (
-    <div className="App">
-      <img className="logo" src={logo} alt="application-logo"/>
-      <h3>Welcome to pychain</h3>
-      <br/>
-      <div className="WalletInfo">
-        <div>Address: {address}</div>
-        <div>Balance: {balance}</div>
-      </div>
-      <br/>
-      <Blockchain/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <img className="logo" src={logo} alt="application-logo" />
+            <h3>Welcome to pychain</h3>
+            <br />
+            <div className="WalletInfo">
+                <div>Address: {address}</div>
+                <div>Balance: {balance}</div>
+            </div>
+            <br />
+            <Blockchain />
+        </div>
+    )
 }
 
-export default App;
+export default App

@@ -7,19 +7,17 @@ function Blockchain() {
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/blockchain`)
-         .then(res => res.json())
-         .then(json => setBlockchain(json))
+            .then((res) => res.json())
+            .then((json) => setBlockchain(json))
     }, [])
 
     return (
         <div className="Blockchain">
             <h3>Blockchain</h3>
             <div>
-              {
-                blockchain.map(block => (
-                    <Block key={block.hash} block={block}/>
-                ))
-              }
+                {blockchain.map((block) => (
+                    <Block key={block.hash} block={block} />
+                ))}
             </div>
         </div>
     )
