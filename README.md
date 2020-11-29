@@ -67,3 +67,10 @@ Make sure to activate the virtual environment.
 ```
 export SEED_DATA=True && python -m backend.app
 ```
+
+**Random note:**
+
+-   Set your code formatting: cmd + , = Settings
+-   search for formatting
+-   change to "format on save"
+-   YOu have to provide a formatter first! (like prettier)
