@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FormGroup, FormControl, Button } from 'react-bootstrap'
 import { API_BASE_URL } from '../config'
@@ -6,6 +6,13 @@ import { API_BASE_URL } from '../config'
 function ConductTransaction() {
     const [amount, setAmount] = useState(0)
     const [recipient, setRecipient] = useState('')
+    const [knownAddresses, setKnownAddresses] = useState([])
+
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/known-addresses`)
+            .then((res) => res.json())
+            .then((json) => setKnownAddresses(json))
+    }, [])
 
     const updateRecipient = (event) => {
         setRecipient(event.target.value)
@@ -54,6 +61,16 @@ function ConductTransaction() {
                 <Button variant="danger" onClick={submitTransaction}>
                     Submit
                 </Button>
+            </div>
+            <br />
+            <h4>Known Addresses</h4>
+            <div>
+                {knownAddresses.map((knownAddress, index) => (
+                    <span key={knownAddress}>
+                        <u>{knownAddress}</u>
+                        {knownAddresses.length - 1 !== index ? ', ' : ''}
+                    </span>
+                ))}
             </div>
         </div>
     )
